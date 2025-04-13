@@ -112,7 +112,7 @@ class Painter {
     }
 }
 
-// We initialize the object aircrafts, helicopeters and painter
+// We initialize aircrafts, helicopeters and painter objects
 const aircrafts = new Gallery(civilAircrafts, militaryAircrafts);
 const helicopters = new Gallery(civilHelicopters, militaryHelicopter);
 const painter = new Painter();
