@@ -44,27 +44,31 @@ class Gallery {
     }
     
     getRandomCivil() {
-        const image = this.civilImages[Math.floor((Math.random() * this.civilImages.length))];
-        console.log(image);
-        return image;
-        // return this.civilImages[Math.floor((Math.random() * this.civilImages.length))]
+        // const image = this.civilImages[Math.floor((Math.random() * this.civilImages.length))];
+        // console.log(image);
+        // return image;
+        return this.civilImages[Math.floor((Math.random() * this.civilImages.length))];
     }
     
     getRandomMilitary() {
-        const militaryImage = this.militaryImages[Math.floor((Math.random() * this.civilImages.length))];
-        console.log(militaryImage);
-        return militaryImage;
-        // return this.militaryImages[Math.floor((Math.random() * this.militaryImages.length))];
+        // const militaryImage = this.militaryImages[Math.floor((Math.random() * this.civilImages.length))];
+        // console.log(militaryImage);
+        // return militaryImage;
+        return this.militaryImages[Math.floor((Math.random() * this.militaryImages.length))];
     }
     
     getAll() {
+        // console.log(this.civilImages.concat(this.militaryImages)[Math.floor((Math.random() * this.civilImages.concat(this.militaryImages).length))])
+        // console.log(this.civilImages.concat(this.militaryImages))
+        return this.civilImages.concat(this.militaryImages);
     }
 }
 
-const moma = new Gallery(civilAircrafts, militaryAircrafts)
+const moma = new Gallery(civilAircrafts, militaryAircrafts);
 
-moma.getRandomCivil()
-moma.getRandomMilitary()
+moma.getRandomCivil();
+moma.getRandomMilitary();
+moma.getAll();
 
 // 2. **Painter**: La clase encargada de pintar las imágenes, de interactuar con el DOM. Encargada de crear etiquetas y manipular el DOM para agregarlas.
 //     - `constructor`: Ejecutará la función `createGallery`.
@@ -82,12 +86,31 @@ moma.getRandomMilitary()
 
 class Painter {
     constructor() {
+        this.createGallery();
     }
 
     createGallery() {
+        const body = document.body;
+        const sectionGallery = document.createElement('section');
+        body.appendChild(sectionGallery);
+        
     }
 
     createImageTag(imageUrl) {
+        const sectionGalleryTag = document.querySelector('section');
+
+        const pictureVehicle = document.createElement('picture');
+        const imgVehicle = document.createElement('img');
+        const attImgSrc = document.createAttribute('src');
+        attImgSrc.value = imageUrl;
+        imgVehicle.setAttributeNode(attSrc);
+
+
+
+        
+        `<picture>
+            <img src="${imageUrl}" />
+        </picture>`
     }
 
     paintSingleImage(imageUrl) {
@@ -100,3 +123,14 @@ class Painter {
 const aircrafts = new Gallery(civilAircrafts, militaryAircrafts);
 const helicopters = new Gallery(civilHelicopters, militaryHelicopter);
 const painter = new Painter();
+
+const deletBtn = document.createElement("button");
+const attHref = document.createAttribute("href");
+attHref.value = "#";
+deletBtn.setAttributeNode(attHref);
+const attId = document.createAttribute("id");
+attId.value = "deleteBtn";
+deletBtn.setAttributeNode(attId);
+deletBtn.classList.add("btn", "btn-primary");
+deletBtn.textContent = "Delete user";
+cardBody.appendChild(deletBtn);
