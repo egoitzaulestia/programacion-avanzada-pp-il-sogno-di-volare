@@ -81,7 +81,7 @@ class Gallery {
 
 class Painter {
     constructor() {
-        this.gallery = null; // Explicitelly intialized as null
+        this.gallery = null; // Explicitly intialized as null
         this.createGallery(); // Creates the actual element
     }
 
