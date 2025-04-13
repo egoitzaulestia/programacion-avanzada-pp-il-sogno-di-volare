@@ -64,11 +64,6 @@ class Gallery {
     }
 }
 
-const moma = new Gallery(civilAircrafts, militaryAircrafts);
-
-moma.getRandomCivil();
-moma.getRandomMilitary();
-moma.getAll();
 
 // 2. **Painter**: La clase encargada de pintar las imágenes, de interactuar con el DOM. Encargada de crear etiquetas y manipular el DOM para agregarlas.
 //     - `constructor`: Ejecutará la función `createGallery`.
@@ -86,37 +81,34 @@ moma.getAll();
 
 class Painter {
     constructor() {
-        this.createGallery();
+        this.gallery = null; // Explicitelly intialized as null
+        this.createGallery(); // Creates the actual element
     }
 
     createGallery() {
-        const body = document.body;
-        const sectionGallery = document.createElement('section');
-        body.appendChild(sectionGallery);
-        
+        this.gallery = document.createElement('section');
+        document.body.appendChild(this.gallery);
     }
 
     createImageTag(imageUrl) {
-        const sectionGalleryTag = document.querySelector('section');
-
         const pictureVehicle = document.createElement('picture');
         const imgVehicle = document.createElement('img');
-        const attImgSrc = document.createAttribute('src');
-        attImgSrc.value = imageUrl;
-        imgVehicle.setAttributeNode(attSrc);
 
+        imgVehicle.setAttribute('src', imageUrl);
+        pictureVehicle.appendChild(imgVehicle);
 
-
-        
-        `<picture>
-            <img src="${imageUrl}" />
-        </picture>`
+        return pictureVehicle;
     }
 
     paintSingleImage(imageUrl) {
+        this.gallery.appendChild(this.createImageTag(imageUrl));
+
     }
 
     paintMultipleImages(arrayOfImages) {
+        arrayOfImages.forEach(imageUrl => {
+            this.paintSingleImage(imageUrl);          
+        });
     }
 }
 
@@ -124,13 +116,3 @@ const aircrafts = new Gallery(civilAircrafts, militaryAircrafts);
 const helicopters = new Gallery(civilHelicopters, militaryHelicopter);
 const painter = new Painter();
 
-const deletBtn = document.createElement("button");
-const attHref = document.createAttribute("href");
-attHref.value = "#";
-deletBtn.setAttributeNode(attHref);
-const attId = document.createAttribute("id");
-attId.value = "deleteBtn";
-deletBtn.setAttributeNode(attId);
-deletBtn.classList.add("btn", "btn-primary");
-deletBtn.textContent = "Delete user";
-cardBody.appendChild(deletBtn);
