@@ -43,6 +43,7 @@ class Gallery {
         this.militaryImages = militaryImages;
     }
     
+    // Returns a random (civil vehicle) image
     getRandomCivil() {
         // const image = this.civilImages[Math.floor((Math.random() * this.civilImages.length))];
         // console.log(image);
@@ -50,6 +51,7 @@ class Gallery {
         return this.civilImages[Math.floor((Math.random() * this.civilImages.length))];
     }
     
+    // Returns a random (military veihicle) image
     getRandomMilitary() {
         // const militaryImage = this.militaryImages[Math.floor((Math.random() * this.civilImages.length))];
         // console.log(militaryImage);
@@ -57,6 +59,7 @@ class Gallery {
         return this.militaryImages[Math.floor((Math.random() * this.militaryImages.length))];
     }
     
+    // Returns a concatenated array
     getAll() {
         // console.log(this.civilImages.concat(this.militaryImages)[Math.floor((Math.random() * this.civilImages.concat(this.militaryImages).length))])
         // console.log(this.civilImages.concat(this.militaryImages))
@@ -85,27 +88,33 @@ class Painter {
         this.createGallery(); // Creates the actual element
     }
 
+    // Creates the gallery by HTML 'section' element and appends it to the body
     createGallery() {
+        // We create section tag
         this.gallery = document.createElement('section');
         document.body.appendChild(this.gallery);
     }
 
+    // Creates the 'picture' and 'img' HTML elements tags
     createImageTag(imageUrl) {
         const pictureVehicle = document.createElement('picture');
         const imgVehicle = document.createElement('img');
 
+        // We set the attribute 'src' and we also add the URL of the image
         imgVehicle.setAttribute('src', imageUrl);
         pictureVehicle.appendChild(imgVehicle);
 
         return pictureVehicle;
     }
 
+    // Paints an image by appendiing the method createImageTag to this.gallery 
     paintSingleImage(imageUrl) {
         this.gallery.appendChild(this.createImageTag(imageUrl));
-
     }
 
+    // Paints all the the images
     paintMultipleImages(arrayOfImages) {
+        // Goes down the array of images
         arrayOfImages.forEach(imageUrl => {
             this.paintSingleImage(imageUrl);          
         });
